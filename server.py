@@ -73,7 +73,7 @@ def handle_dialog(req, res):
         # Заполняем текст ответа
         res['response']['text'] = 'Привет! Купи слона!'
         # Получим подсказки
-        res['response']['buttons'] = get_suggests(user_id)
+        
         return
 
     # Сюда дойдем только, если пользователь не новый,
@@ -88,11 +88,14 @@ def handle_dialog(req, res):
         'ладно',
         'куплю',
         'покупаю',
-        'хорошо'
+        'хорошо',
+        'я покупаю',
+        'я куплю'
     ]:
         # Пользователь согласился, прощаемся.
         res['response']['text'] = 'Слона можно найти на Яндекс.Маркете!'
-        res['response']['end_session'] = True
+        res['response']['text'] = 'Купи кролика!'
+        res['response']['buttons'] = get_suggests(user_id)
         return
 
     # Если нет, то убеждаем его купить слона!
